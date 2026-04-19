@@ -31,6 +31,15 @@
     <string name="renews_on">Se renouvelle le : %s</string>
     <string name="edit_account">Modifier les informations du compte</string>
     
+    <!-- Settings Screen -->
+    <string name="appearance">Apparence</string>
+    <string name="theme_system">Système</string>
+    <string name="theme_light">Clair</string>
+    <string name="theme_dark">Sombre</string>
+    <string name="auto_connect">Connexion automatique</string>
+    <string name="auto_connect_desc">Démarrer le VPN au démarrage de l\'appareil</string>
+    <string name="tunnel_protocol">Protocole de tunnel</string>
+    
     <!-- Support Screen -->
     <string name="support_title">Aide &amp; Support</string>
     <string name="contact_options">Options de contact</string>

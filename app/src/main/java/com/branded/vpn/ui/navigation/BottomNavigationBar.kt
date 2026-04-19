@@ -14,7 +14,11 @@ fun BottomNavigationBar(
     navController: NavController,
     currentDestination: NavDestination?
 ) {
-    val showBar = BottomNavItems.any { it.route == currentDestination?.route }
+    // Check if current route is part of bottom nav items using hierarchy for robustness
+    val showBar = currentDestination?.hierarchy?.any { dest ->
+        BottomNavItems.any { it.route == dest.route }
+    } == true
+
     if (!showBar) return
 
     NavigationBar(

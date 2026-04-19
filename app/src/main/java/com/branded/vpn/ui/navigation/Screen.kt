@@ -15,7 +15,7 @@ sealed class Screen(val route: String, @StringRes val titleRes: Int, val icon: I
     object Profile : Screen("profile", R.string.nav_profile, Icons.Default.Person)
     object Settings : Screen("settings", R.string.nav_settings, Icons.Default.Settings)
     object Auth : Screen("auth", R.string.nav_home, Icons.Default.Home)
-    object Support : Screen("support", R.string.support_title, Icons.Default.Home)
+    object Support : Screen("support", R.string.support_title, Icons.Default.HelpCenter)
     object VpnPermission : Screen("vpn_permission", R.string.app_name, Icons.Default.Home)
 }
 
@@ -23,5 +23,6 @@ val BottomNavItems = listOf(
     Screen.Home,
     Screen.Servers,
     Screen.Profile,
+    Screen.Support,
     Screen.Settings
 )

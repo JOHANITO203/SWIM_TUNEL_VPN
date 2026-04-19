@@ -31,6 +31,15 @@
     <string name="renews_on">Продление: %s</string>
     <string name="edit_account">Изменить данные аккаунта</string>
     
+    <!-- Settings Screen -->
+    <string name="appearance">Внешний вид</string>
+    <string name="theme_system">Системная</string>
+    <string name="theme_light">Светлая</string>
+    <string name="theme_dark">Темная</string>
+    <string name="auto_connect">Авто-подключение</string>
+    <string name="auto_connect_desc">Запускать VPN при загрузке устройства</string>
+    <string name="tunnel_protocol">Протокол туннеля</string>
+    
     <!-- Support Screen -->
     <string name="support_title">Помощь и поддержка</string>
     <string name="contact_options">Варианты связи</string>

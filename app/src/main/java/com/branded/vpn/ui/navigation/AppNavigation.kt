@@ -9,6 +9,7 @@ import com.branded.vpn.ui.screens.help.SupportScreen
 import com.branded.vpn.ui.screens.home.HomeScreen
 import com.branded.vpn.ui.screens.profile.ProfileScreen
 import com.branded.vpn.ui.screens.servers.ServersScreen
+import com.branded.vpn.ui.screens.settings.SettingsScreen
 import com.branded.vpn.ui.screens.vpn.VpnPermissionScreen
 
 @Composable
