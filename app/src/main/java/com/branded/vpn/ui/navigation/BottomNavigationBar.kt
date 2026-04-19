@@ -3,6 +3,8 @@ package com.branded.vpn.ui.navigation
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -21,24 +23,32 @@ fun BottomNavigationBar(
 
     if (!showBar) return
 
-    NavigationBar(
-        containerColor = MaterialTheme.colorScheme.surface,
-        tonalElevation = 8.dp,
-        windowInsets = WindowInsets.navigationBars
+    Surface(
+        color = MaterialTheme.colorScheme.surface,
+        tonalElevation = 8.dp
     ) {
-        BottomNavItems.forEach { screen ->
-            NavigationBarItem(
-                icon = { Icon(screen.icon, contentDescription = null) },
-                label = { Text(stringResource(screen.titleRes)) },
-                selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
-                onClick = {
-                    navController.navigate(screen.route) {
-                        popUpTo(navController.graph.startDestinationId) { saveState = true }
-                        launchSingleTop = true
-                        restoreState = true
+        NavigationBar(
+            modifier = Modifier
+                .fillMaxWidth()
+                .navigationBarsPadding(),
+            containerColor = Color.Transparent,
+            tonalElevation = 0.dp,
+            windowInsets = WindowInsets(0, 0, 0, 0)
+        ) {
+            BottomNavItems.forEach { screen ->
+                NavigationBarItem(
+                    icon = { Icon(screen.icon, contentDescription = null) },
+                    label = { Text(stringResource(screen.titleRes)) },
+                    selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
+                    onClick = {
+                        navController.navigate(screen.route) {
+                            popUpTo(navController.graph.startDestinationId) { saveState = true }
+                            launchSingleTop = true
+                            restoreState = true
+                        }
                     }
-                }
-            )
+                )
+            }
         }
     }
 }
