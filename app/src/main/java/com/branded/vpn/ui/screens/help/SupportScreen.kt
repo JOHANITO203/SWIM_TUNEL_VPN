@@ -12,24 +12,25 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.branded.vpn.R
 
 @Composable
 fun SupportScreen() {
     val faqs = listOf(
-        FAQ("How to connect?", "Simply tap the power button on the home screen to connect to the fastest available node."),
-        FAQ("Why is it slow?", "Connection speed depends on your physical distance from the selected node and the node's current load."),
-        FAQ("Is my data secure?", "Yes, we use industry-standard encryption protocols (VLESS/VMess) to ensure your traffic is protected."),
-        FAQ("How to cancel subscription?", "You can manage your subscription directly from the Profile tab.")
+        FAQ(stringResource(R.string.faq_q1), stringResource(R.string.faq_a1)),
+        FAQ(stringResource(R.string.faq_q2), stringResource(R.string.faq_a2)),
+        FAQ(stringResource(R.string.faq_q3), stringResource(R.string.faq_a3)),
     )
 
     LazyColumn(modifier = Modifier.fillMaxSize().padding(24.dp)) {
         item {
-            Text("Help & Support", style = MaterialTheme.typography.displaySmall)
+            Text(stringResource(R.string.support_title), style = MaterialTheme.typography.displaySmall)
             Spacer(modifier = Modifier.height(32.dp))
             
-            Text("Contact Options", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+            Text(stringResource(R.string.contact_options), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
             Spacer(modifier = Modifier.height(16.dp))
         }
 
@@ -45,7 +46,7 @@ fun SupportScreen() {
         }
 
         item {
-            Text("Frequently Asked Questions", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+            Text(stringResource(R.string.faq_title), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
             Spacer(modifier = Modifier.height(16.dp))
         }
 
@@ -60,7 +61,7 @@ fun SupportScreen() {
                 onClick = { /* Contact support action */ },
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text("Open Support Ticket")
+                Text(stringResource(R.string.support_ticket))
             }
         }
     }

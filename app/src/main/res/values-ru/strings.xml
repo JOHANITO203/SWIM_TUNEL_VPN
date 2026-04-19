@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SWIMTUNELVPN</string>
+    
+    <!-- Navigation -->
+    <string name="nav_home">Главная</string>
+    <string name="nav_nodes">Серверы</string>
+    <string name="nav_profile">Профиль</string>
+    <string name="nav_settings">Настройки</string>
+    
+    <!-- Home Screen -->
+    <string name="status_protected">ЗАЩИЩЕНО</string>
+    <string name="status_unprotected">НЕ ЗАЩИЩЕНО</string>
+    <string name="status_connecting">УСТАНОВКА ТУННЕЛЯ...</string>
+    <string name="status_disconnecting">ОТКЛЮЧЕНИЕ...</string>
+    <string name="status_error">ОШИБКА ПОДКЛЮЧЕНИЯ</string>
+    <string name="selected_node">Выбранный узел</string>
+    <string name="select_server_hint">Нажмите, чтобы выбрать сервер</string>
+    <string name="download">Загрузка</string>
+    <string name="upload">Отдача</string>
+    
+    <!-- Servers Screen -->
+    <string name="servers_title">Глобальные локации</string>
+    
+    <!-- Profile Screen -->
+    <string name="profile_title">Профиль аккаунта</string>
+    <string name="not_logged_in">Вы не вошли в систему</string>
+    <string name="sub_details">Детали подписки</string>
+    <string name="user_id">ID пользователя</string>
+    <string name="email">Email</string>
+    <string name="renews_on">Продление: %s</string>
+    <string name="edit_account">Изменить данные аккаунта</string>
+    
+    <!-- Support Screen -->
+    <string name="support_title">Помощь и поддержка</string>
+    <string name="contact_options">Варианты связи</string>
+    <string name="faq_title">Часто задаваемые вопросы</string>
+    <string name="support_ticket">Открыть тикет</string>
+    
+    <!-- FAQs -->
+    <string name="faq_q1">Как подключиться?</string>
+    <string name="faq_a1">Просто нажмите кнопку питания на главном экране, чтобы подключиться к самому быстрому доступному узлу.</string>
+    <string name="faq_q2">Почему скорость низкая?</string>
+    <string name="faq_a2">Скорость соединения зависит от вашего физического расстояния до выбранного узла и его текущей загрузки.</string>
+    <string name="faq_q3">Мои данные в безопасности?</string>
+    <string name="faq_a3">Да, мы используем стандартные протоколы шифрования (VLESS/VMess), чтобы гарантировать защиту вашего трафика.</string>
+</resources>

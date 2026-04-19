@@ -13,8 +13,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.branded.vpn.R
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -25,20 +27,20 @@ fun ProfileScreen(
     val user by viewModel.user.collectAsState(initial = null)
 
     Column(modifier = Modifier.fillMaxSize().padding(24.dp)) {
-        Text("Account Profile", style = MaterialTheme.typography.displaySmall)
+        Text(stringResource(R.string.profile_title), style = MaterialTheme.typography.displaySmall)
         
         Spacer(modifier = Modifier.height(32.dp))
 
         if (user == null) {
             Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                Text("Not logged in")
+                Text(stringResource(R.string.not_logged_in))
             }
         } else {
             ProfileInfoSection(user!!.email, user!!.id)
 
             Spacer(modifier = Modifier.height(24.dp))
 
-            Text("Subscription Details", style = MaterialTheme.typography.titleMedium)
+            Text(stringResource(R.string.sub_details), style = MaterialTheme.typography.titleMedium)
             Spacer(modifier = Modifier.height(16.dp))
 
             user!!.subscription?.let { sub ->
@@ -56,7 +58,7 @@ fun ProfileScreen(
                 modifier = Modifier.fillMaxWidth(),
                 colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondaryContainer, contentColor = MaterialTheme.colorScheme.onSecondaryContainer)
             ) {
-                Text("Edit Account Information")
+                Text(stringResource(R.string.edit_account))
             }
         }
     }
@@ -66,9 +68,9 @@ fun ProfileScreen(
 fun ProfileInfoSection(email: String, id: String) {
     Card(modifier = Modifier.fillMaxWidth()) {
         Column(modifier = Modifier.padding(16.dp)) {
-            InfoRow(Icons.Default.AccountCircle, "User ID", id)
+            InfoRow(Icons.Default.AccountCircle, stringResource(R.string.user_id), id)
             Spacer(modifier = Modifier.height(8.dp))
-            InfoRow(Icons.Default.Email, "Email", email)
+            InfoRow(Icons.Default.Email, stringResource(R.string.email), email)
         }
     }
 }
@@ -100,11 +102,11 @@ fun SubscriptionCard(planName: String, expiryDate: Long, subUrl: String) {
                 Text(planName, style = MaterialTheme.typography.headlineSmall)
             }
             Spacer(modifier = Modifier.height(8.dp))
-            Text("Expires on: $dateStr", style = MaterialTheme.typography.bodyMedium)
+            Text(stringResource(R.string.renews_on, dateStr), style = MaterialTheme.typography.bodyMedium)
             
             Spacer(modifier = Modifier.height(16.dp))
             
-            Text("Subscription URL", style = MaterialTheme.typography.labelSmall)
+            Text(stringResource(R.string.subscription_url), style = MaterialTheme.typography.labelSmall)
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Icon(Icons.Default.Link, contentDescription = null, modifier = Modifier.size(16.dp))
                 Spacer(modifier = Modifier.width(4.dp))

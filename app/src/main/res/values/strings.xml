@@ -1,4 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">SWIMTUNELVPN</string>
+    
+    <!-- Navigation -->
+    <string name="nav_home">Home</string>
+    <string name="nav_nodes">Nodes</string>
+    <string name="nav_profile">Profile</string>
+    <string name="nav_settings">Settings</string>
+    
+    <!-- Home Screen -->
+    <string name="status_protected">PROTECTED</string>
+    <string name="status_unprotected">UNPROTECTED</string>
+    <string name="status_connecting">ESTABLISHING TUNNEL...</string>
+    <string name="status_disconnecting">DISCONNECTING...</string>
+    <string name="status_error">CONNECTION FAILED</string>
+    <string name="selected_node">Selected Node</string>
+    <string name="select_server_hint">Click to select a server</string>
+    <string name="download">Download</string>
+    <string name="upload">Upload</string>
+    
+    <!-- Servers Screen -->
+    <string name="servers_title">Global Locations</string>
+    
+    <!-- Profile Screen -->
+    <string name="profile_title">Account Profile</string>
+    <string name="not_logged_in">Not logged in</string>
+    <string name="sub_details">Subscription Details</string>
+    <string name="user_id">User ID</string>
+    <string name="email">Email</string>
+    <string name="renews_on">Renews on: %s</string>
+    <string name="edit_account">Edit Account Information</string>
+    
+    <!-- Support Screen -->
+    <string name="support_title">Help &amp; Support</string>
+    <string name="contact_options">Contact Options</string>
+    <string name="faq_title">Frequently Asked Questions</string>
+    <string name="support_ticket">Open Support Ticket</string>
+    
+    <!-- FAQs -->
+    <string name="faq_q1">How to connect?</string>
+    <string name="faq_a1">Simply tap the power button on the home screen to connect to the fastest available node.</string>
+    <string name="faq_q2">Why is it slow?</string>
+    <string name="faq_a2">Connection speed depends on your physical distance from the selected node and the node\'s current load.</string>
+    <string name="faq_q3">Is my data secure?</string>
+    <string name="faq_a3">Yes, we use industry-standard encryption protocols (VLESS/VMess) to ensure your traffic is protected.</string>
 </resources>
