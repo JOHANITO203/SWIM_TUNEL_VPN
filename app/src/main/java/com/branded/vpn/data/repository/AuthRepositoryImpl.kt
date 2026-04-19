@@ -7,6 +7,7 @@ import com.branded.vpn.data.local.dao.VpnDao
 import com.branded.vpn.data.local.entity.UserEntity
 import com.branded.vpn.data.remote.VpnApi
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
