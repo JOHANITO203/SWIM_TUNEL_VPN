@@ -8,6 +8,7 @@ import com.branded.vpn.data.local.entity.NodeEntity
 import com.branded.vpn.data.local.entity.UserEntity
 
 @Database(entities = [NodeEntity::class, UserEntity::class], version = 1, exportSchema = false)
+@TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun vpnDao(): VpnDao
 }

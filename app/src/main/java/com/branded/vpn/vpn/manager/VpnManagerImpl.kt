@@ -7,6 +7,8 @@ import com.branded.vpn.core.domain.model.VpnStatus
 import com.branded.vpn.vpn.service.VpnTunnelService
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 import javax.inject.Singleton
 
