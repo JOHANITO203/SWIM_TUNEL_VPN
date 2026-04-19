@@ -7,6 +7,7 @@ import kotlinx.parcelize.Parcelize
 data class User(
     val id: String,
     val email: String,
+    val token: String?,
     val subscription: Subscription?
 ) : Parcelable
 
@@ -16,7 +17,7 @@ data class Subscription(
     val planName: String,
     val expiryDate: Long,
     val isActive: Boolean,
-    val subscriptionUrl: String?
+    val subscriptionUrl: String
 ) : Parcelable
 
 data class VpnNode(
@@ -47,4 +48,11 @@ data class TrafficStats(
     val upByte: Long,
     val downSpeed: String,
     val upSpeed: String
+)
+
+data class Diagnostics(
+    val ipAddress: String,
+    val provider: String,
+    val latency: Int,
+    val uptime: Long
 )

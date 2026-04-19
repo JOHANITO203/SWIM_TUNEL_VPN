@@ -2,28 +2,58 @@ package com.branded.vpn.ui.screens.settings
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.branded.vpn.data.local.SettingsDataStore
 
 @Composable
-fun SettingsScreen() {
-    Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
-        Text("Settings", style = MaterialTheme.typography.titleLarge)
-        Spacer(modifier = Modifier.height(24.dp))
+fun SettingsScreen(
+    viewModel: SettingsViewModel = hiltViewModel()
+) {
+    val autoConnect by viewModel.autoConnect.collectAsState(initial = false)
+    val protocol by viewModel.protocol.collectAsState(initial = "VLESS")
+
+    Column(modifier = Modifier.fillMaxSize().padding(24.dp)) {
+        Text("App Settings", style = MaterialTheme.typography.displayLarge)
         
-        SettingItem("VPN Protocol", "VLESS (Recommended)")
-        SettingItem("Split Tunneling", "Off")
-        SettingItem("Kill Switch", "Disabled")
-        SettingItem("App Version", "1.0.0 (MVP)")
-    }
-}
+        Spacer(modifier = Modifier.height(40.dp))
 
-@Composable
-fun SettingItem(title: String, value: String) {
-    Column(modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)) {
-        Text(title, style = MaterialTheme.typography.bodyLarge)
-        Text(value, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.primary)
-        Divider(modifier = Modifier.padding(top = 8.dp))
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Column {
+                Text("Auto-Connect", style = MaterialTheme.typography.titleLarge)
+                Text("Start VPN on device boot", style = MaterialTheme.typography.bodySmall)
+            }
+            Switch(
+                checked = autoConnect,
+                onCheckedChange = { viewModel.toggleAutoConnect(it) }
+            )
+        }
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+        Text("Tunnel Protocol", style = MaterialTheme.typography.titleLarge)
+        Spacer(modifier = Modifier.height(8.dp))
+        
+        val protocols = listOf("VLESS", "VMESS", "TROJAN", "SHADOWSOCKS")
+        protocols.forEach { p ->
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                RadioButton(selected = protocol == p, onClick = { viewModel.setProtocol(p) })
+                Text(p)
+            }
+        }
+        
+        Spacer(modifier = Modifier.weight(1f))
+        
+        Text("Version 1.0.0-mvp", modifier = Modifier.align(Alignment.CenterHorizontally))
     }
 }

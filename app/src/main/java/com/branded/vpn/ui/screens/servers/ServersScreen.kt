@@ -7,6 +7,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -19,41 +20,49 @@ fun ServersScreen(
     viewModel: ServersViewModel = hiltViewModel()
 ) {
     val nodes by viewModel.nodes.collectAsState(initial = emptyList())
+    val isRefreshing by viewModel.isRefreshing.collectAsState()
 
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Select Server") },
+                title = { Text("Global Locations") },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "Back")
+                        Icon(Icons.Default.ArrowBack, contentDescription = null)
                     }
                 }
             )
         }
     ) { padding ->
-        LazyColumn(modifier = Modifier.padding(padding)) {
-            items(nodes) { node ->
-                ServerItem(
-                    node = node,
-                    onClick = { 
+        Column(modifier = Modifier.padding(padding)) {
+            if (isRefreshing) {
+                LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
+            }
+            
+            LazyColumn {
+                items(nodes) { node ->
+                    ServerListItem(node = node) {
                         viewModel.selectNode(node)
                         onBack()
                     }
-                )
+                }
             }
         }
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ServerItem(node: VpnNode, onClick: () -> Unit) {
+fun ServerListItem(node: VpnNode, onClick: () -> Unit) {
     ListItem(
+        modifier = Modifier.fillMaxWidth(),
         headlineContent = { Text(node.name) },
-        supportingContent = { Text("Load: ${node.load}% | Ping: ${node.ping}ms") },
-        modifier = Modifier.fillMaxWidth().padding(8.dp),
+        supportingContent = { Text("${node.protocol} | Ping: ${node.ping}ms") },
         trailingContent = {
-            Text(node.countryCode)
-        }
+            Badge(containerColor = MaterialTheme.colorScheme.primaryContainer) {
+                Text("${node.load}% Load")
+            }
+        },
+        onClick = onClick
     )
 }
