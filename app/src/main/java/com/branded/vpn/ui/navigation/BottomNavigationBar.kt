@@ -1,5 +1,6 @@
 package com.branded.vpn.ui.navigation
 
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
@@ -18,7 +19,8 @@ fun BottomNavigationBar(
 
     NavigationBar(
         containerColor = MaterialTheme.colorScheme.surface,
-        tonalElevation = 8.dp
+        tonalElevation = 8.dp,
+        windowInsets = WindowInsets.navigationBars
     ) {
         BottomNavItems.forEach { screen ->
             NavigationBarItem(

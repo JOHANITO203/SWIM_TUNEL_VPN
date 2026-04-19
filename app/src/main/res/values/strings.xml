@@ -31,6 +31,15 @@
     <string name="renews_on">Renews on: %s</string>
     <string name="edit_account">Edit Account Information</string>
     
+    <!-- Settings Screen -->
+    <string name="appearance">Appearance</string>
+    <string name="theme_system">System</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+    <string name="auto_connect">Auto-Connect</string>
+    <string name="auto_connect_desc">Start VPN on device boot</string>
+    <string name="tunnel_protocol">Tunnel Protocol</string>
+    
     <!-- Support Screen -->
     <string name="support_title">Help &amp; Support</string>
     <string name="contact_options">Contact Options</string>

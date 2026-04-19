@@ -26,7 +26,12 @@ fun ProfileScreen(
 ) {
     val user by viewModel.user.collectAsState(initial = null)
 
-    Column(modifier = Modifier.fillMaxSize().padding(24.dp)) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .statusBarsPadding()
+            .padding(24.dp)
+    ) {
         Text(stringResource(R.string.profile_title), style = MaterialTheme.typography.displaySmall)
         
         Spacer(modifier = Modifier.height(32.dp))

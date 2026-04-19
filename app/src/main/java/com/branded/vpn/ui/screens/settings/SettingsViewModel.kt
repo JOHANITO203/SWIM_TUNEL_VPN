@@ -14,6 +14,7 @@ class SettingsViewModel @Inject constructor(
 
     val autoConnect = settingsDataStore.autoConnect
     val protocol = settingsDataStore.vpnProtocol
+    val appTheme = settingsDataStore.appTheme
 
     fun toggleAutoConnect(enabled: Boolean) {
         viewModelScope.launch {
@@ -24,6 +25,12 @@ class SettingsViewModel @Inject constructor(
     fun setProtocol(protocol: String) {
         viewModelScope.launch {
             settingsDataStore.setProtocol(protocol)
+        }
+    }
+
+    fun setTheme(theme: String) {
+        viewModelScope.launch {
+            settingsDataStore.setTheme(theme)
         }
     }
 }
