@@ -7,9 +7,8 @@ import androidx.navigation.compose.*
 import com.branded.vpn.ui.screens.auth.AuthScreen
 import com.branded.vpn.ui.screens.help.SupportScreen
 import com.branded.vpn.ui.screens.home.HomeScreen
+import com.branded.vpn.ui.screens.profile.ProfileScreen
 import com.branded.vpn.ui.screens.servers.ServersScreen
-import com.branded.vpn.ui.screens.settings.SettingsScreen
-import com.branded.vpn.ui.screens.subscription.SubscriptionScreen
 import com.branded.vpn.ui.screens.vpn.VpnPermissionScreen
 
 @Composable
@@ -31,8 +30,8 @@ fun AppNavigation(
         composable(Screen.Servers.route) {
             ServersScreen(onBack = { navController.popBackStack() })
         }
-        composable(Screen.Subscription.route) {
-            SubscriptionScreen()
+        composable(Screen.Profile.route) {
+            ProfileScreen()
         }
         composable(Screen.Settings.route) {
             SettingsScreen()

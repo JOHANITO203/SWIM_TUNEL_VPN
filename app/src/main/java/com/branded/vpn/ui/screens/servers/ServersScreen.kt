@@ -59,8 +59,19 @@ fun ServerListItem(node: VpnNode, onClick: () -> Unit) {
         headlineContent = { Text(node.name) },
         supportingContent = { Text("${node.protocol} | Ping: ${node.ping}ms") },
         trailingContent = {
-            Badge(containerColor = MaterialTheme.colorScheme.primaryContainer) {
-                Text("${node.load}% Load")
+            Column(horizontalAlignment = Alignment.End) {
+                Text("${node.load}%", style = MaterialTheme.typography.labelSmall)
+                Spacer(modifier = Modifier.height(4.dp))
+                LinearProgressIndicator(
+                    progress = { node.load / 100f },
+                    modifier = Modifier.width(60.dp),
+                    color = when {
+                        node.load > 80 -> MaterialTheme.colorScheme.error
+                        node.load > 50 -> MaterialTheme.colorScheme.tertiary
+                        else -> MaterialTheme.colorScheme.primary
+                    },
+                    trackColor = MaterialTheme.colorScheme.surfaceVariant,
+                )
             }
         },
         onClick = onClick
