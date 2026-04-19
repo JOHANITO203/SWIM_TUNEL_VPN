@@ -28,7 +28,7 @@ fun HomeScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {
-        Text("Branded VPN", style = MaterialTheme.typography.displayLarge)
+        Text("SWIMTUNELVPN", style = MaterialTheme.typography.displayLarge)
         
         Spacer(modifier = Modifier.height(60.dp))
 

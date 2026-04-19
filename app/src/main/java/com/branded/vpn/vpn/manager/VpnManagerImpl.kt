@@ -12,8 +12,12 @@ import javax.inject.Singleton
 
 @Singleton
 class VpnManagerImpl @Inject constructor(
-    @ApplicationContext private val context: Context
+    @ApplicationContext private val context: Context,
+    private val settingsDataStore: com.branded.vpn.data.local.SettingsDataStore,
+    private val vpnRepository: com.branded.vpn.core.domain.repository.VpnRepository
 ) : VpnManager {
+
+    private val managerScope = kotlinx.coroutines.CoroutineScope(kotlinx.coroutines.Dispatchers.IO + kotlinx.coroutines.SupervisorJob())
 
     override val vpnStatus: StateFlow<VpnStatus> = VpnTunnelService.vpnStatus
 
@@ -33,7 +37,14 @@ class VpnManagerImpl @Inject constructor(
     }
 
     override fun reconnectLast() {
-        // Here we would fetch last used node from DataStore
-        // and trigger connect.
+        managerScope.launch {
+            val lastId = settingsDataStore.selectedNodeId.first()
+            if (lastId != null) {
+                val nodes = vpnRepository.getNodes().first()
+                val target = nodes.find { it.id == lastId }
+                target?.let { connect(it) }
+            }
+        }
     }
 }
+

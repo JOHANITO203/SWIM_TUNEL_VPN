@@ -62,7 +62,7 @@ class VpnTunnelService : VpnService() {
                 if (tunnelInterface != null) {
                     tunnelEngine.start(tunnelInterface!!.fileDescriptor.fd)
                     _vpnStatus.value = VpnStatus.Connected
-                    updateNotification("Protected via Branded VPN")
+                    updateNotification("Protected via SWIMTUNELVPN")
                     Log.i("VPN", "Tunnel established successfully")
                 } else {
                     throw Exception("Could not establish tunnel interface")
@@ -78,7 +78,7 @@ class VpnTunnelService : VpnService() {
 
     private fun establishInterface(): ParcelFileDescriptor? {
         val builder = Builder()
-        builder.setSession("BrandedVPN-Tunnel")
+        builder.setSession("SWIMTUNELVPN-Tunnel")
         builder.addAddress("10.0.0.1", 32)
         builder.addRoute("0.0.0.0", 0) // Route all IPv4 traffic
         builder.addDnsServer("1.1.1.1")
@@ -118,7 +118,7 @@ class VpnTunnelService : VpnService() {
         )
 
         return NotificationCompat.Builder(this, "vpn_status_channel")
-            .setContentTitle("Branded VPN")
+            .setContentTitle("SWIMTUNELVPN")
             .setContentText(content)
             .setSmallIcon(android.R.drawable.ic_lock_lock) // Placeholder icon
             .setContentIntent(pendingIntent)

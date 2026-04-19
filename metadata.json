@@ -1,5 +1,5 @@
 {
-  "name": "Branded VPN",
+  "name": "SWIMTUNELVPN",
   "description": "A high-performance, subscription-based Android VPN application with Xray-core ready architecture.",
   "requestFramePermissions": [],
   "majorCapabilities": ["VPN", "Subscriptions", "Multi-node"]

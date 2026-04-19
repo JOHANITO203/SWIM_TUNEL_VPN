@@ -39,8 +39,13 @@ class AuthRepositoryImpl @Inject constructor(
     }
 
     override suspend fun restoreSession(): Result<User?> = try {
-        // Here we could call a refresh token API
-        Result.success(null) 
+        val currentProfile = vpnDao.getUserProfile().first()
+        if (currentProfile != null) {
+            // Logic to verify token validity
+            Result.success(currentProfile.toDomain())
+        } else {
+            Result.success(null)
+        }
     } catch (e: Exception) { Result.failure(e) }
 
     private fun UserEntity.toDomain() = User(

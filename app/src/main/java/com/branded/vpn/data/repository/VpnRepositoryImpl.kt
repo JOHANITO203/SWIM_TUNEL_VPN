@@ -11,11 +11,17 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
 
+import kotlinx.coroutines.flow.first
+
 @Singleton
 class VpnRepositoryImpl @Inject constructor(
-    private val vpnApi: VpnApi,
+    private val vpnApi: com.branded.vpn.data.remote.VpnApi,
     private val vpnDao: VpnDao
 ) : VpnRepository {
+
+    private suspend fun getToken(): String {
+        return vpnDao.getUserProfile().first()?.token ?: ""
+    }
 
     override fun getNodes(): Flow<List<VpnNode>> = vpnDao.getAllNodes().map { entities ->
         entities.map { it.toDomain() }
@@ -24,7 +30,7 @@ class VpnRepositoryImpl @Inject constructor(
     override fun getSubscription(): Flow<Subscription?> = vpnDao.getUserProfile().map { it?.toSubscription() }
 
     override suspend fun fetchNodes(): Result<List<VpnNode>> = try {
-        val response = vpnApi.getNodes()
+        val response = vpnApi.getNodes("Bearer ${getToken()}")
         if (response.isSuccessful) {
             val list = response.body() ?: emptyList()
             vpnDao.insertNodes(list.map { it.toEntity() })
@@ -33,10 +39,9 @@ class VpnRepositoryImpl @Inject constructor(
     } catch (e: Exception) { Result.failure(e) }
 
     override suspend fun refreshSubscription(): Result<Subscription> = try {
-        val response = vpnApi.getSubscription()
+        val response = vpnApi.getSubscription("Bearer ${getToken()}")
         if (response.isSuccessful) {
             val sub = response.body() ?: throw Exception("Empty response")
-            // Update user profile in DB with latest sub info
             Result.success(sub.toDomain())
         } else Result.failure(Exception("API Error"))
     } catch (e: Exception) { Result.failure(e) }
